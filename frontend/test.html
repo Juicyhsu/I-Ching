@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽籤功能測試</title>
+    <link rel="stylesheet" href="divination.css">
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="test-container">
+        <h1>抽籤功能測試頁面</h1>
+        <button onclick="testDrawing()">測試抽籤介面</button>
+        <div id="result"></div>
+    </div>
+
+    <script src="divination.js"></script>
+    <script>
+        function testDrawing() {
+            const container = document.getElementById('result');
+            const drawHTML = divinationDrawer.showDrawInterface('測試問題：我的運勢如何？');
+            container.innerHTML = drawHTML;
+            console.log('抽籤介面已顯示');
+        }
+
+        // 測試 divinationDrawer 是否存在
+        window.addEventListener('load', () => {
+            if (typeof divinationDrawer !== 'undefined') {
+                console.log('✅ divinationDrawer 已成功載入');
+            } else {
+                console.error('❌ divinationDrawer 未載入');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>易經占卜陳老師 - 您人生道路上的好夥伴</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="divination.css">
+</head>
+
+<body>
+    <!-- 水墨背景層 -->
+    <div class="ink-background"></div>
+
+    <div class="container">
+        <!-- 標題區 -->
+        <header class="header">
+            <h1>易經占卜陳老師</h1>
+            <p class="subtitle">您人生道路上的好夥伴</p>
+        </header>
+
+        <!-- 影片區 -->
+        <div class="video-container">
+            <video autoplay loop muted playsinline class="intro-video">
+                <source src="../圖片人物動態影片生成.mp4" type="video/mp4">
+                您的瀏覽器不支持影片播放。
+            </video>
+        </div>
+
+        <!-- 歡迎卡片 -->
+        <div class="welcome-card">
+            <h2>歡迎您的蒞臨！</h2>
+            <p>我是<strong>陳老師</strong>的數位分身，提供以下服務：</p>
+
+            <table class="service-table">
+                <thead>
+                    <tr>
+                        <th>功能</th>
+                        <th>說明</th>
+                        <th>範例問題</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🎓 背景諮詢</td>
+                        <td>了解陳老師的專業背景</td>
+                        <td>「陳老師的專長是什麼？」</td>
+                    </tr>
+                    <tr>
+                        <td>🔮 易經占卜</td>
+                        <td>為您起卦解惑，提供人生指引</td>
+                        <td>「我換工作發展會如何？」</td>
+                    </tr>
+                    <tr>
+                        <td>📖 卦象查詢</td>
+                        <td>查詢64卦的詳細解說</td>
+                        <td>「第1卦是什麼？」</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="hint">💡 直接輸入問題即可，系統會自動識別您的需求。</p>
+        </div>
+
+        <!-- 聊天區域 -->
+        <div class="chat-container" id="chatContainer">
+            <!-- 聊天訊息會動態添加到這裡 -->
+
+            <!-- 對話管理按鈕 -->
+            <div class="chat-controls">
+                <button id="clearChatBtn" class="control-btn clear-btn" title="清除所有對話">
+                    🗑️ 清除對話
+                </button>
+                <button id="downloadChatBtn" class="control-btn download-btn" title="下載對話記錄">
+                    💾 下載對話
+                </button>
+            </div>
+        </div>
+
+        <!-- 輸入區域 -->
+        <div class="input-area">
+            <textarea id="userInput" placeholder="💬 請輸入您的問題或占卜請求..." rows="5"></textarea>
+            <button id="sendBtn" class="send-btn">☯ 送出</button>
+        </div>
+
+        <!-- 範例按鈕 -->
+        <div class="examples">
+            <button class="example-btn" data-text="老師您的聯絡方式">老師您的聯絡方式</button>
+            <button class="example-btn" data-text="我現在換工作，發展會如何？">我現在換工作，發展會如何？</button>
+            <button class="example-btn" data-text="我與某人會交往嗎？">我與某人會交往嗎？</button>
+            <button class="example-btn" data-text="家人關係會改善嗎？">家人關係會改善嗎？</button>
+            <button class="example-btn" data-text="現在是適合投資的時機嗎？">現在是適合投資的時機嗎？</button>
+            <button class="example-btn" data-text="這次考試能順利通過嗎？">這次考試能順利通過嗎？</button>
+            <button class="example-btn" data-text="最近適合創業嗎？">最近適合創業嗎？</button>
+            <button class="example-btn" data-text="我的健康狀況如何？">我的健康狀況如何？</button>
+        </div>
+
+        <!-- 頁尾 -->
+        <footer class="footer">
+            <h3>📞 聯絡資訊</h3>
+            <p>📍 <strong>易經占卜陳老師工作室</strong></p>
+            <p>📧 如需預約深度諮詢，請聯繫陳老師</p>
+            <p>⏰ 服務時間：週一至週六 10:00-18:00</p>
+            <hr>
+            <p class="disclaimer">⚠️ <strong>免責聲明：</strong>占卜結果僅供參考，最終決策權在您手中。<br>
+                陳老師相信，易經占卜是自我認識的工具，而非宿命論。</p>
+        </footer>
+    </div>
+
+    <script src="divination.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

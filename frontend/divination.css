@@ -1,0 +1,271 @@
+/* ==================== 抽籤卜卦樣式 ==================== */
+
+/* 抽籤容器 */
+.divination-draw-container {
+    background: linear-gradient(180deg,
+            rgba(42, 35, 25, 0.98) 0%,
+            rgba(35, 28, 20, 1) 100%);
+    border: 3px solid #d4af37;
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    margin: 2rem 0;
+    text-align: center;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.8),
+        inset 0 0 30px rgba(212, 175, 55, 0.1);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.divination-draw-container.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+.draw-title {
+    color: #c8102e;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.draw-subtitle {
+    color: #d4af37;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* 籤筒和按鈕並排容器 */
+.stick-and-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+/* 籤筒 */
+.stick-container {
+    width: 180px;
+    height: 220px;
+    margin: 0;
+    background: linear-gradient(180deg, #8b4513 0%, #654321 100%);
+    border: 4px solid #d4af37;
+    border-radius: 10px 10px 50% 50%;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        inset 0 -20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    padding: 18px 10px;
+}
+
+/* 籤 */
+.stick {
+    width: 7.5px;
+    height: 110px;
+    background: linear-gradient(180deg, #f5deb3 0%, #d2b48c 100%);
+    border: 1px solid #8b7355;
+    border-radius: 4px;
+    margin: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: stickFloat 2s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes stickFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+}
+
+/* 搖動動畫 */
+.stick-container.shaking {
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+.stick-container.shaking .stick {
+    animation: stickShake 0.3s ease-in-out infinite;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes stickShake {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-10px) rotate(-10deg);
+    }
+
+    75% {
+        transform: translateY(-10px) rotate(10deg);
+    }
+}
+
+/* 已抽籤位置 */
+.drawn-sticks {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stick-slot {
+    width: 100px;
+    height: 120px;
+    background: rgba(20, 15, 10, 0.8);
+    border: 3px dashed rgba(212, 175, 55, 0.4);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(212, 175, 55, 0.5);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.stick-slot.revealed {
+    border-style: solid;
+    border-color: #d4af37;
+    background: linear-gradient(135deg,
+            rgba(200, 16, 46, 0.3) 0%,
+            rgba(212, 175, 55, 0.2) 100%);
+}
+
+.drawn-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d4af37;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: numberReveal 0.5s ease-out;
+}
+
+@keyframes numberReveal {
+    from {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* 按鈕區域（包含按鈕和提示） */
+.button-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* 搖籤按鈕 */
+.shake-btn {
+    padding: 1.2rem 2rem;
+    background: linear-gradient(135deg, #c8102e 0%, #8b0000 100%);
+    color: #f5f5dc;
+    border: 3px solid #d4af37;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow:
+        0 6px 20px rgba(200, 16, 46, 0.6),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.shake-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #d4102e 0%, #a00000 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(200, 16, 46, 0.8);
+}
+
+.shake-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.shake-btn.completed {
+    background: linear-gradient(135deg, #2d7a2d 0%, #1a5c1a 100%);
+    border-color: #4caf50;
+}
+
+/* 飛出的籤 */
+.flying-stick {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: #d4af37;
+    text-shadow:
+        0 0 20px rgba(212, 175, 55, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: flyOut 0.8s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes flyOut {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.5) rotate(360deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -200%) scale(1) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.draw-hint {
+    color: rgba(212, 175, 55, 0.8);
+    font-size: 0.85rem;
+    margin: 0;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.4;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
