@@ -1,5 +1,22 @@
 // API 配置
-const API_URL = 'http://localhost:5001';
+// 自動判斷 API URL：
+// 1. 如果是檔案開啟 (file://) 或 Live Server (port != 5001)，使用 http://localhost:5001
+// 2. 如果是生產環境或 Flask 直接服務 (port == 5001)，使用相對路徑空字串 (同源)
+let API_URL = '';
+
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const isFlaskPort = window.location.port === '5001';
+
+if (window.location.protocol === 'file:') {
+    API_URL = 'http://localhost:5001';
+} else if (isLocal && !isFlaskPort) {
+    API_URL = 'http://localhost:5001';
+} else {
+    // 生產環境 (Zeabur) 或 Local Flask (http://localhost:5001)
+    API_URL = ''; 
+}
+
+console.log('🔗 API URL 設定為:', API_URL || '(同源相對路徑)');
 
 // 等待 DOM 完全載入
 document.addEventListener('DOMContentLoaded', function () {

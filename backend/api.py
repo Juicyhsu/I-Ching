@@ -22,8 +22,14 @@ load_dotenv()
 # OPENAI_API_KEY = "sk-proj-xxxxx"
 # ============================================================================
 
-app = Flask(__name__)
+# ============================================================================
+
+app = Flask(__name__, static_folder='../frontend', static_url_path='')
 CORS(app)  # 允許跨域請求
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 # OpenAI 初始化
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
