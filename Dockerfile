@@ -4,6 +4,11 @@ FROM python:3.11-slim
 # 設定工作目錄
 WORKDIR /app
 
+# 設定環境變數 (確保 Python 輸出不被緩衝，並支援中文檔名)
+ENV PYTHONUNBUFFERED=1
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
 # 複製依賴文件
 COPY requirements.txt .
 
@@ -19,6 +24,6 @@ ENV PORT=8080
 # 暴露端口
 EXPOSE 8080
 
-# 啟動命令 (Shell 模式, 自動展開變數)
-CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
+# 啟動命令 (Shell 模式, 自動展開變數, 增加日誌輸出)
+CMD gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 1 --threads 8 --timeout 120 --access-logfile - --error-logfile - --log-level info app:app
 
