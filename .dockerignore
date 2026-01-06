@@ -22,12 +22,9 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Project specific
+# Project specific - 文檔文件
 *.md
-*.mp4
-*.png
 .env.example
 
-# Large files
-圖片人物動態影片生成.mp4
+# 排除不需要的大型圖片 (但保留前端需要的媒體文件)
 Gemini_Generated_Image_43vm8q43vm8q43vm.png
