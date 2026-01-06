@@ -1,0 +1,33 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.md
+*.mp4
+*.png
+.env.example
+
+# Large files
+圖片人物動態影片生成.mp4
+Gemini_Generated_Image_43vm8q43vm8q43vm.png
