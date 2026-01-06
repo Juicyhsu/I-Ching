@@ -31,6 +31,11 @@ CORS(app)  # 允許跨域請求
 def index():
     return app.send_static_file('index.html')
 
+@app.route('/health')
+def health_root():
+    """根路徑健康檢查 (Zeabur 使用)"""
+    return jsonify({'status': 'ok', 'service': 'i-ching', 'openai': 'enabled' if client else 'disabled'})
+
 # OpenAI 初始化
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 if OPENAI_API_KEY:

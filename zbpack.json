@@ -1,0 +1,11 @@
+{
+  "build_command": "echo 'No build needed'",
+  "install_command": "pip install -r requirements.txt",
+  "start_command": "gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 120 --access-logfile - --error-logfile - app:app",
+  "healthcheck": {
+    "path": "/health",
+    "interval": 10,
+    "timeout": 5,
+    "retries": 3
+  }
+}

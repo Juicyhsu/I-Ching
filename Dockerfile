@@ -19,6 +19,9 @@ ENV PORT=8080
 # 暴露端口 (文檔用途)
 EXPOSE 8080
 
-# 啟動命令 - 使用 shell 形式以支援環境變數
-CMD gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 120 --access-logfile - --error-logfile - app:app
+# 創建啟動腳本
+RUN echo '#!/bin/sh\nexec gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 120 --access-logfile - --error-logfile - --log-level info app:app' > /app/start.sh && chmod +x /app/start.sh
+
+# 啟動命令
+CMD ["/bin/sh", "/app/start.sh"]
 
