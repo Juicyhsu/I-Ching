@@ -13,8 +13,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 複製應用程式代碼
 COPY . .
 
-# 暴露端口
-EXPOSE 5001
+# 設定預設端口 (Zeabur 會覆蓋此值)
+ENV PORT=8080
 
-# 啟動命令
-CMD ["gunicorn", "--bind", "0.0.0.0:5001", "--workers", "2", "--timeout", "120", "app:app"]
+# 暴露端口 (文檔用途)
+EXPOSE 8080
+
+# 啟動命令 - 使用 shell 形式以支援環境變數
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 120 --access-logfile - --error-logfile - app:app
+

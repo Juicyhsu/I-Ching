@@ -1,19 +1,30 @@
-// API 配置
-// 自動判斷 API URL：
-// 1. 如果是檔案開啟 (file://) 或 Live Server (port != 5001)，使用 http://localhost:5001
-// 2. 如果是生產環境或 Flask 直接服務 (port == 5001)，使用相對路徑空字串 (同源)
+// ========================================
+// API URL 設定說明：
+// ========================================
+// 自動判斷環境並設定正確的 API URL
+// 1. 本地開發 (file:// 或 Live Server): http://localhost:5001
+// 2. Zeabur 生產環境: 使用相對路徑 (同源)
+// ========================================
+
 let API_URL = '';
 
-const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// 判斷是否為本地開發環境
+const isFileProtocol = window.location.protocol === 'file:';
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const isFlaskPort = window.location.port === '5001';
 
-if (window.location.protocol === 'file:') {
+if (isFileProtocol) {
+    // 檔案直接開啟
     API_URL = 'http://localhost:5001';
-} else if (isLocal && !isFlaskPort) {
+    console.log('🔧 環境: 檔案直接開啟 (file://)');
+} else if (isLocalhost && !isFlaskPort) {
+    // Live Server 或其他本地開發服務器
     API_URL = 'http://localhost:5001';
+    console.log('🔧 環境: 本地開發服務器 (Live Server)');
 } else {
-    // 生產環境 (Zeabur) 或 Local Flask (http://localhost:5001)
-    API_URL = ''; 
+    // 生產環境 (Zeabur) 或 Flask 直接服務
+    API_URL = '';
+    console.log('🔧 環境: 生產環境或 Flask 服務器');
 }
 
 console.log('🔗 API URL 設定為:', API_URL || '(同源相對路徑)');
