@@ -16,10 +16,9 @@ COPY . .
 # 設定預設端口 (Zeabur 會覆蓋此值)
 ENV PORT=8080
 
-# 暴露端口 (文檔用途)
+# 暴露端口
 EXPOSE 8080
 
-# 使用 sh -c 執行命令以支援環境變數替換
-ENTRYPOINT ["sh", "-c"]
-CMD ["gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 2 --timeout 120 --access-logfile - --error-logfile - --log-level info app:app"]
+# 啟動命令 (Shell 模式, 自動展開變數)
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
 
