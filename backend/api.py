@@ -276,11 +276,12 @@ def health():
     return jsonify({'status': 'ok', 'openai': 'enabled' if client else 'disabled'})
 
 if __name__ == '__main__':
+    port = int(os.getenv('PORT', 5001))
     print("=" * 60)
     print("[*] 易經占卜 API 服務器啟動中...")
     print("=" * 60)
     if not OPENAI_API_KEY:
         print("[!] 警告：未設定 OPENAI_API_KEY")
-    print("API 地址：http://localhost:5001")
+    print(f"API 地址：http://0.0.0.0:{port}")
     print("=" * 60)
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=False)
