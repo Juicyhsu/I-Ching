@@ -231,7 +231,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function addMessage(text, type, autoScroll = true) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${type}`;
-        messageDiv.textContent = text;
+
+        // bot 回覆用 marked 解析 Markdown，讓排版更好看
+        if (type === 'bot' && typeof marked !== 'undefined') {
+            messageDiv.innerHTML = marked.parse(text);
+        } else {
+            messageDiv.textContent = text;
+        }
+
         chatContainer.appendChild(messageDiv);
 
         // 顯示聊天容器
@@ -249,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         return messageDiv;
     }
+
 
     // 更新對話管理按鈕的顯示狀態
     function updateChatControls() {
@@ -316,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         messages.forEach((msg, index) => {
             const type = msg.classList.contains('user') ? '【用戶】' : '【陳老師】';
-            const text = msg.textContent.trim();
+            const text = msg.innerText.trim();
             content += `${type}\n${text}\n\n`;
             content += '-'.repeat(50) + '\n\n';
         });

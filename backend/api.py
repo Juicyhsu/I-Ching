@@ -1046,31 +1046,38 @@ def get_ai_interpretation(question, result):
     changing_line = result['changing_line']
     
     prompt = f"""
-你是易經占卜陳老師，請根據以下卦象為來訪者提供專業解讀。
+請以「易經占卜陳老師」的身分，為來訪者進行深入、有溫度的卦象解讀。
 
 【來訪者問題】
 {question}
 
 【卦象資訊】
-本卦：第 {hexagram['num']} 卦 - {hexagram['name']}
-上卦：{upper['name']}（{upper['element']}）{upper['symbol']}
-下卦：{lower['name']}（{lower['element']}）{lower['symbol']}
-卦義：{hexagram['meaning']}
-運勢：{hexagram['fortune']}
-變爻：第 {changing_line} 爻
+- 本卦：第 {hexagram['num']} 卦 - {hexagram['name']}
+- 上卦：{upper['name']}（{upper['element']}）{upper['symbol']}
+- 下卦：{lower['name']}（{lower['element']}）{lower['symbol']}
+- 卦義：{hexagram['meaning']}
+- 運勢：{hexagram['fortune']}
+- 變爻：第 {changing_line} 爻
 
-請用溫和、專業的語氣提供解讀，包含實際建議（3-5點），字數控制在 300-400 字。
+【解讀指令】
+1. 請用溫和、專業且具同理心的語氣，讓來訪者感受到被理解。
+2. 輸出格式請使用 Markdown，必須包含以下三個段落：
+   - ### 卦象解析：深入解說本卦的象徵意義、上下卦的互動關係及變爻的影響（約 160-200 字）。
+   - ### 建議與方向：以 1. 2. 3. 數字列表，給出 3 點具體、可行的生活建議（每點約 40-60 字）。
+   - ### 陳老師的話：以溫暖、鼓勵的語氣做一個小結語（約 60-80 字）。
+3. 使用 **加粗** 標記重點關鍵字。
+4. 總字數控制在 400-600 字之間，語氣連貫自然，不要流水帳。
 """
     
     try:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "你是易經占卜陳老師。"},
+                {"role": "system", "content": CHEN_LAOSHI_PERSONA + "\n請務必使用 Markdown 格式化輸出，特別是使用 ### 標題與列表。"},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.7,
-            max_tokens=800
+            max_tokens=1200
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
